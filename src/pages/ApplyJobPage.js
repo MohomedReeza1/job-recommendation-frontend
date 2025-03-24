@@ -170,9 +170,8 @@
 
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { fetchJobDetails } from "../services/api";
+import { fetchJobDetails, applyForJob } from "../services/api";
 import { useAuth } from "../context/AuthContext";
-import axios from "axios"; 
 import '../styles/ApplyJobPage.css';
 
 const ApplyJobPage = () => {
@@ -240,19 +239,7 @@ const ApplyJobPage = () => {
       }
       
       // Make the API request
-      await applyForJob(formData)
-
-      // await axios.post("http://127.0.0.1:8000/api/apply-job/", formData, {
-      //   headers: {
-      //     Authorization: `Bearer ${token}`
-      //   }
-      // }
-      // );
-      
-      // await applyForJob(formData);
-      // const response = await loginEmployer(formData.email, formData.password);
-      // const profile = await fetchJobSeekerProfile();
-      // const response = await fetchRecommendationsWithForm(formData);
+      await applyForJob(jobId, cvFile, coverLetterFile);
       
       alert("Application submitted successfully!");
       navigate("/applied-jobs");
